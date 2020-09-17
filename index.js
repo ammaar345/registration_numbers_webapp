@@ -27,3 +27,7 @@ app.engine('handlebars', exphbs({
 app.use(express.static("public"))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+const PORT=process.env.PORT||3001;
+app.listen(PORT,function(){
+  console.log("App started at port :",PORT);
+})
