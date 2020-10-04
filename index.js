@@ -7,7 +7,7 @@ const flash = require('express-flash');
 const session = require('express-session');
 const pg = require("pg");
 const Pool = pg.Pool;
-const connectionString = process.env.DATABASE_URL || 'postgresql://sneakygoblin:codex123@localhost:5432/greetings_webapp';
+const connectionString = process.env.DATABASE_URL || 'postgresql://sneakygoblin:codex123@localhost:5432/registration';
 const pool = new Pool({
     connectionString
 });
@@ -30,4 +30,9 @@ app.use(bodyParser.json())
 const PORT=process.env.PORT||3001;
 app.listen(PORT,function(){
   console.log("App started at port :",PORT);
+})
+app.get ("/",function(req,res){
+  res.render("index"),{
+  
+  }
 })
