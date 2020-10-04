@@ -18,7 +18,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true
   }));
-  app.use(flash());
+  // app.use(flash());
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 app.engine('handlebars', exphbs({
@@ -32,7 +32,7 @@ app.listen(PORT,function(){
   console.log("App started at port :",PORT);
 })
 app.get ("/",function(req,res){
-  res.render("index"),{
+  res.render("index")
   
-  }
+  
 })
