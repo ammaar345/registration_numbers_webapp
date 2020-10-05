@@ -1,4 +1,4 @@
-module.exports = function RegNumber() {
+module.exports = function RegNumber(pool) {
 
     // var regNumbers = initialState ? initialState : [];
     function plateStorage() {
@@ -37,7 +37,7 @@ module.exports = function RegNumber() {
     //         }
     // }
   async  function addToDb(regNum){
-        const INSERT_QUERY = ' insert into town () values ($1)';
+        const INSERT_QUERY = ' insert into regNumbers (reg) values ($1)';
         await pool.query(INSERT_QUERY, [regNum]);
     }
     // exists in addRegNumber already
@@ -47,15 +47,15 @@ module.exports = function RegNumber() {
     //     }
     // }
  async function addRegNumber(regNumber) {
-if (regNumber !== ""){
-        if (/C[YLJ] \d{3,5}$/.test(regNumber) || /C[YLJ] \d+-\d+$/.test(regNumber)) {
-            if (!regNumbers.includes(regNumber)) {
+// if (regNumber !== ""){
+        // if (/C[YLJ] \d{3,5}$/.test(regNumber) || /C[YLJ] \d+-\d+$/.test(regNumber)) {
+            // if (!regNumbers.includes(regNumber)) {
               await addToDb(regNumber)          
-                return true;
-            }
-        }
-    }
-        return false;
+                // return true;
+    //         }
+    //     }
+    // //}
+    //     return false;
 
     }
 

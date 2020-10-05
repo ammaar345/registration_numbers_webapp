@@ -53,9 +53,9 @@ var regNumber=req.params.registration;
 
 app.post("/reg_numbers",async function(req,res){
  var reg=req.body.registration;
-  const addReg= await regNumbers.addRegNumber(reg)
+  const addReg= await regNumbers.addRegNumber(reg);
   
-  res.render("registration",{
+  res.render("index",{
 
 
   })

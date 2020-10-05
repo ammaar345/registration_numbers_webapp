@@ -9,7 +9,7 @@
      <div class="container">
 	
 			<h1>Registration numbers</h1>
-<form action="/reg_numbers" >
+<form action="/reg_numbers" method="POST" >
 			<div class="message">
 
 			</div>
@@ -34,7 +34,7 @@
 			<hr>
 			<div class="regNumbers">
 				<!-- <i>Reg numbers to be added here...</i> -->
-
+<a href="/reg_numbers/{{this.regNumber}}">{{this.regNumber}}</a>
 				<div class="regNumber">
 					CY 124-245
 				</div>
