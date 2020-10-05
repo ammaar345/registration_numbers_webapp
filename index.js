@@ -36,7 +36,7 @@ app.listen(PORT,function(){
 
 
 
-app.get ("/",function(req,res){
+app.get ("/",async function(req,res){
   res.render("index")
   
   
@@ -54,7 +54,7 @@ var regNumber=req.params.registration;
 app.post("/reg_numbers",async function(req,res){
  var reg=req.body.registration;
   const addReg= await regNumbers.addRegNumber(reg)
-  addReg()
+  
   res.render("registration",{
 
 

@@ -46,11 +46,11 @@ module.exports = function RegNumber() {
     //         return true
     //     }
     // }
-    function addRegNumber(regNumber) {
+ async function addRegNumber(regNumber) {
 if (regNumber !== ""){
         if (/C[YLJ] \d{3,5}$/.test(regNumber) || /C[YLJ] \d+-\d+$/.test(regNumber)) {
             if (!regNumbers.includes(regNumber)) {
-                addToDb(regNumber)          
+              await addToDb(regNumber)          
                 return true;
             }
         }
@@ -60,28 +60,28 @@ if (regNumber !== ""){
     }
 
 
-    function filter(location) {
-        // CL, CY or contains(obtained from dropdown menu)
-        var filteredList = [];
-        for (var i = 0; i < regNumbers.length; i++) {
-            var currentReg = regNumbers[i]; //if no work make var = const
-            if (town.value) {
-                if (currentReg.startsWith(location)) {
-                    filteredList.push(currentReg);
-                } else if (location === "all") {
+    // async function filter(location) {
+    //     // CL, CY or contains(obtained from dropdown menu)
+    //     var filteredList = [];
+    //     for (var i = 0; i < regNumbers.length; i++) {
+    //         var currentReg = regNumbers[i]; //if no work make var = const
+    //         if (town.value) {
+    //             if (currentReg.startsWith(location)) {
+    //                 filteredList.push(currentReg);
+    //             } else if (location === "all") {
 
-                    filteredList.push(currentReg);
-                }
-
-
-            }
+    //                 filteredList.push(currentReg);
+    //             }
 
 
-        }
+    //         }
 
-        return filteredList
 
-    }
+    //     }
+
+    //     return filteredList
+
+    // }
     // function checkText(registerNum) {
     //     var msgReturned = ""
     //     if (registerNum === "") {
@@ -130,7 +130,7 @@ if (regNumber !== ""){
     return {
         addRegNumber,
         plateStorage,
-        filter,
+        // filter,
 
         // checkValid,
         // checkText,
