@@ -20,7 +20,9 @@ body {
 .parts div {
 	flex: 1;
 }
-
+select{background-color: dodgerblue;
+	
+}
 .regNumberEntered {
 	/* margin: 1em; */
 	padding: 1em;
@@ -28,11 +30,12 @@ body {
 	font-size: 1em;
 }
 
-.btn {
+.btn,input[type="submit"],select {
 	margin: 1em;
-	padding: 1em;
+	padding: 0.4em;
 	font-size: 1em;
 	border-radius: 0.25em;
+	width: 8.2em;
 }
 
 .blue {
@@ -44,7 +47,7 @@ body {
 	font-weight: bold;
 	color: crimson;
 }
-button:hover{background-color: bisque;}
+input[type="submit"]:hover{background-color: bisque;}
 .regNumber {
 
 	background-color: yellow;
