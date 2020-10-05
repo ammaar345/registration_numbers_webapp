@@ -25,6 +25,7 @@ module.exports = function RegNumber(pool) {
         }
         return 0;
     }
+
     // function checkExists(reg, regArray) {
     //     if (/C[YLJ] \d{3,5}$/.test(reg) || /C[YLJ] \d+-\d+$/.test(reg)) {
     //         if (!regArray.includes(reg)) {
@@ -47,15 +48,15 @@ module.exports = function RegNumber(pool) {
     //     }
     // }
  async function addRegNumber(regNumber) {
-// if (regNumber !== ""){
-        // if (/C[YLJ] \d{3,5}$/.test(regNumber) || /C[YLJ] \d+-\d+$/.test(regNumber)) {
-            // if (!regNumbers.includes(regNumber)) {
+if (regNumber !== ""){
+        if (/C[YLJ] \d{3,5}$/.test(regNumber) || /C[YLJ] \d+-\d+$/.test(regNumber)) {
+            if (!regNumbers.includes(regNumber)) {
               await addToDb(regNumber)          
-                // return true;
-    //         }
-    //     }
-    // //}
-    //     return false;
+                return true;
+            }
+        }
+    }   
+        return false;
 
     }
 
