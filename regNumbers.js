@@ -58,7 +58,19 @@ module.exports = function RegNumber(pool) {
     //     return false;
 
     }
-
+    
+    // async function countGreeted(username) {
+    //     const SELECT_QUERY = 'Select name from users where name=$1'
+    //     const UPDATE_QUERY = 'UPDATE users set greeted_count=greeted_count+1  where name=$1 ';
+    //     const user = await pool.query(SELECT_QUERY, [username])
+    //     if (user.rows.length > 0) {
+    //         await pool.query(UPDATE_QUERY, [username])
+    //     }
+    //     else {
+    //         await addEntry(username)
+    //     }
+//try something like this //
+    // }
 
     // async function filter(location) {
     //     // CL, CY or contains(obtained from dropdown menu)
