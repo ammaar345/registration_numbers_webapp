@@ -59,11 +59,11 @@ module.exports = function RegNumber(pool) {
 
     }
     
-    // async function countGreeted(username) {
-    //     const SELECT_QUERY = 'Select name from users where name=$1'
-    //     const UPDATE_QUERY = 'UPDATE users set greeted_count=greeted_count+1  where name=$1 ';
+    // async function countGreeted(registration) {
+    //     const SELECT_QUERY = 'Select id from towns where town=$1'
+    //     const INSERT_QUERY = 'INSERT into regNumbers (townId,) ';
     //     const user = await pool.query(SELECT_QUERY, [username])
-    //     if (user.rows.length > 0) {
+    //     if (user.rows[0].rows(length//remove) > 0) {
     //         await pool.query(UPDATE_QUERY, [username])
     //     }
     //     else {
