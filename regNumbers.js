@@ -1,10 +1,10 @@
 module.exports = function RegNumber(pool) {
 
     // var regNumbers = initialState ? initialState : [];
-    function plateStorage() {
-        return regNumbers;
+    // function plateStorage() {
+    //     return regNumbers;
 
-    }
+    // }
 
     // function testfilter(location, registration) {
     //     // CL, CY or contains
@@ -25,7 +25,12 @@ module.exports = function RegNumber(pool) {
         }
         return 0;
     }
-
+async function showAll(){
+const SELECT_QUERY="select reg from regnumbers "
+const regs=await pool.query(SELECT_QUERY)
+console.log(regs.rows)
+return regs.rows;
+}
     // function checkExists(reg, regArray) {
     //     if (/C[YLJ] \d{3,5}$/.test(reg) || /C[YLJ] \d+-\d+$/.test(reg)) {
     //         if (!regArray.includes(reg)) {
@@ -34,45 +39,52 @@ module.exports = function RegNumber(pool) {
     //     }
     //     else {
     //          return false 
-            
+
     //         }
     // }
-  async  function addToDb(regNum){
-        const INSERT_QUERY = ' insert into regNumbers (reg) values ($1)';
-        await pool.query(INSERT_QUERY, [regNum]);
-    }
+    // async function addToDb(regNum) {
+    //     const INSERT_QUERY = ' insert into regNumbers (reg) values ($1)';
+    //     await pool.query(INSERT_QUERY, [regNum]);
+    // }
     // exists in addRegNumber already
     //function checkValid(regist) {
     //     if (/C[YLJ] \d{3,5}$/.test(regist) || /C[YLJ] \d+-\d+$/.test(regist)) {
     //         return true
     //     }
     // }
- async function addRegNumber(regNumber) {
-if (regNumber !== ""){
-        if (/C[YLJ] \d{3,5}$/.test(regNumber) || /C[YLJ] \d+-\d+$/.test(regNumber)) {
-            if (!regNumbers.includes(regNumber)) {
-              await addToDb(regNumber)          
-                return true;
-            }
-        }
-    }   
-        return false;
+    // async function addRegNumber(regNumber) {
+    //     if (regNumber !== "") {
+    //         if (/C[YLJ] \d{3,5}$/.test(regNumber) || /C[YLJ] \d+-\d+$/.test(regNumber)) {
+    //             if (!regNumber.includes(regNumber)) {
+    //                 await addToDb(regNumber)
+    //                 return true;
+    //             }
+    //         }
+    //     }
+    //     return false;
 
-    }
-    
-    // async function countGreeted(registration) {
-    //     const SELECT_QUERY = 'Select id from towns where town=$1'
-    //     const INSERT_QUERY = 'INSERT into regNumbers (townId,) ';
-    //     const user = await pool.query(SELECT_QUERY, [username])
-    //     if (user.rows[0].rows(length//remove) > 0) {
-    //         await pool.query(UPDATE_QUERY, [username])
-    //     }
-    //     else {
-    //         await addEntry(username)
-    //     }
-//try something like this //
     // }
 
+    async function addToDb(registration) {
+        const regCode =await registration.substring(0, 2);
+        // console.log(regCode)
+        const SELECT_QUERY = 'Select id from towns where town=$1'
+        const reg = await pool.query(SELECT_QUERY, [regCode])
+        var regID = reg.rows[0].id;
+        let SELECT_QUERY_2;
+        if (regID > 0) {
+            SELECT_QUERY_2 = await pool.query('SELECT * from regNumbers where reg=$1', [registration])
+        }
+        if (SELECT_QUERY_2.rows.length < 1) {
+            var INSERT_QUERY = "insert into regNumbers (reg,regNumId) values ($1,$2)"
+            await pool.query(INSERT_QUERY, [registration, regID]);
+
+        }
+    }
+function filterByTown(){
+
+
+}
     // async function filter(location) {
     //     // CL, CY or contains(obtained from dropdown menu)
     //     var filteredList = [];
@@ -141,14 +153,15 @@ if (regNumber !== ""){
 
     // }
     return {
-        addRegNumber,
-        plateStorage,
+        // addRegNumber,
+        // plateStorage,
         // filter,
 
         // checkValid,
         // checkText,
         // classAdd,
-        databaseFilter,
+        showAll,
+        // databaseFilter,
         addToDb
     }
 }
