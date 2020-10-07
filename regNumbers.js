@@ -59,7 +59,19 @@ if (regNumber !== ""){
         return false;
 
     }
-
+    
+    // async function countGreeted(registration) {
+    //     const SELECT_QUERY = 'Select id from towns where town=$1'
+    //     const INSERT_QUERY = 'INSERT into regNumbers (townId,) ';
+    //     const user = await pool.query(SELECT_QUERY, [username])
+    //     if (user.rows[0].rows(length//remove) > 0) {
+    //         await pool.query(UPDATE_QUERY, [username])
+    //     }
+    //     else {
+    //         await addEntry(username)
+    //     }
+//try something like this //
+    // }
 
     // async function filter(location) {
     //     // CL, CY or contains(obtained from dropdown menu)
