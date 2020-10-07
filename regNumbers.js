@@ -1,5 +1,5 @@
 module.exports = function RegNumber(pool) {
-  // function checkExists(reg, regArray) {
+    // function checkExists(reg, regArray) {
     //     if (/C[YLJ] \d{3,5}$/.test(reg) || /C[YLJ] \d+-\d+$/.test(reg)) {
     //         if (!regArray.includes(reg)) {
     //             return true
@@ -58,7 +58,7 @@ module.exports = function RegNumber(pool) {
         }
         return 0;
     }
-  
+
     async function addToDb(registration) {
         const regCode = await registration.substring(0, 2);
         // console.log(regCode)
@@ -69,7 +69,7 @@ module.exports = function RegNumber(pool) {
         if (regID > 0) {
             SELECT_QUERY_2 = await pool.query('SELECT * from regNumbers where reg=$1', [registration])
         }
-    else    if (SELECT_QUERY_2.rows.length < 1) {
+        else if (SELECT_QUERY_2.rows.length < 1) {
             var INSERT_QUERY = 'insert into regNumbers (reg,regNumId) values ($1,$2)'
             await pool.query(INSERT_QUERY, [registration, regID]);
 
@@ -80,9 +80,18 @@ module.exports = function RegNumber(pool) {
         const regs = await pool.query(SELECT_QUERY)
         return regs.rows;
     }
-    function filterByTown() {
+    async function filterByTown(town) {
+    const SELECT_QUERY=await pool.query('Select reg from regNumbers where town=')
+        if (town = "CA") {
 
 
+        }
+        if (town = "CJ") {
+
+        }
+        if (town =) {
+
+        }
     }
     // async function filter(location) {
     //     // CL, CY or contains(obtained from dropdown menu)
