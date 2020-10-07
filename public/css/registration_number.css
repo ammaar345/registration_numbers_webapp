@@ -24,10 +24,10 @@ select{background-color: dodgerblue;
 	
 }
 .regNumberEntered {
-	/* margin: 1em; */
+	
 	padding: 1em;
 	border-radius: 0.5em;
-	font-size: 1em;
+	
 }
 
 .btn,input[type="submit"],select {
@@ -41,8 +41,6 @@ select{background-color: dodgerblue;
 .blue {
 	background-color: dodgerblue;
 }
-ul{display: inline-block;}
-li{display: inline-block;}
 .message {
 	height: 1em;
 	font-weight: bold;
@@ -54,18 +52,16 @@ input[type="submit"]:hover{background-color: bisque;}
      
 		background-color: yellow;
 		width: 7.5em;
-		font-weight: 900;
+		
 		margin:1em;
 		border-radius: 0.3em;
-	  padding: 4px;  
+	  padding: 0.7em;  
 		border:1px solid black ;
-		text-align:  center ;
+		
 		display: inline-block;
+		
 	  }
 
-	  li {list-style-type: none}
 	  ul{list-style-type:none;}
 
-input[type='radio'] {
-	margin: 1em;
-}
+

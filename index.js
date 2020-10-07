@@ -29,18 +29,27 @@ app.engine('handlebars', exphbs({
 app.use(express.static("public"))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-const PORT=process.env.PORT||3001;
-app.listen(PORT,function(){
-  console.log("App started at port :",PORT);
-})
-
 
 
 app.get ("/",async function(req,res){
   // var regs=await regNumbers.showAll();
-  res.render("index"), {
-
- }
+  const reg=await regNumbers.showAll();
+  res.render("index",{
+     reg : reg
+    }) 
+ })
+ app.post("/reg_numbers",async function(req,res){
+   var regNumber=req.body.registration;
+   const showReg=await regNumbers.showAll()
+  const addReg=await regNumbers.addToDb(regNumber)
+ 
+   // regNumbers.addToDb(reg)
+   
+   res.render("index",{
+   //  registration:showReg
+   
+   })
+ 
  })
 
 // app.get("/reg_numbers",async function(req,res){
@@ -51,15 +60,8 @@ app.get ("/",async function(req,res){
   
 // })
 
-app.post("/reg_numbers",async function(req,res){
-  var regNumber=req.body.registration;
- await regNumbers.addToDb(regNumber)
- const regs=await regNumbers.showAll();
-  // regNumbers.addToDb(reg)
-  
-  res.render("index",{
-   
-    registration:regs
-  })
-
+const PORT=process.env.PORT||3001;
+app.listen(PORT,function(){
+  console.log("App started at port :",PORT);
 })
+

@@ -29,29 +29,18 @@
 					<option value="CL">Stellenbosch</option>
 
 				</select>
+
+				<ul> 
+					{{#each reg}}
+		<li class="regNumber">{{this.reg}}</li>
+		{{/each}}
+		</ul>
+		
 		</form>
-	</div>
-	</div>
-
-	<hr>
-
-
 	</div>
 	{{!-- <!-- <i>Reg numbers to be added here...</i> -->
 <a href="/reg_numbers/{{this.regNumber}}">{{this.regNumber}}</a> --}}
-
-
 	{{!-- {{reg}} --}}
-	<ul> {{#each registration}}
-		<li class="regNumber">{{this}}
-
-		</li>
-		{{/each}}</ul>
-
-	</div>
-	</div>
-	</div>
-
 </body>
 
 </html>
