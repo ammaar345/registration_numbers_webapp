@@ -1,46 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Numbers</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Registration Numbers</title>
 </head>
+
 <body>
-     <div class="container">
-	
-			<h1>Registration numbers</h1>
-<form action="/reg_numbers" method="POST" >
+	<div class="container">
+
+		<h1>Registration numbers</h1>
+		<form action="/reg_numbers" method="POST">
 			<div class="message">
 
 			</div>
 
 
-				<input type="text" class="regNumberEntered" placeholder="enter a registration number" name="registration">
-		<input type="submit"	 class="addRegNumber btn blue" value="Add reg number">
+			<input type="text" class="regNumberEntered" placeholder="enter a registration number" name="registration">
+			<input type="submit" class="addRegNumber btn blue" value="Add reg number">
 
 			<div class="filter">
 				<strong>Filter by town</strong>
-        <select id="townSelect"  >
-      <option value="all">Show All</option>
-      <option value="CY">Bellville</option>
-      <option value="CJ">Paarl</option>
-      <option value="CL">Stellenbosch</option>
-     
-    </select>
-	</form>
-</div>
-			</div>
+				<select id="townSelect">
+					<option value="all">Show All</option>
+					<option value="CY">Bellville</option>
+					<option value="CJ">Paarl</option>
+					<option value="CL">Stellenbosch</option>
 
-			<hr>
-			<div class="regNumbers">
-				<!-- <i>Reg numbers to be added here...</i> -->
-<a href="/reg_numbers/{{this.regNumber}}">{{this.regNumber}}</a>
-				<div class="regNumber">
-					CY 124-245
-				</div>
-			</div>
-		</div>
+				</select>
+		</form>
 	</div>
-	
+	</div>
+
+	<hr>
+
+
+	</div>
+	{{!-- <!-- <i>Reg numbers to be added here...</i> -->
+<a href="/reg_numbers/{{this.regNumber}}">{{this.regNumber}}</a> --}}
+
+
+	{{!-- {{reg}} --}}
+	<ul> {{#each registration}}
+		<li class="regNumber">{{this}}
+
+		</li>
+		{{/each}}</ul>
+
+	</div>
+	</div>
+	</div>
+
 </body>
+
 </html>
