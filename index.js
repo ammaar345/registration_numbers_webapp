@@ -7,7 +7,7 @@ const session = require('express-session');
 const pg = require("pg");
 
 const Pool = pg.Pool;
-const connectionString = process.env.DATABASE_URL || 'postgresql://codex:codex123@localhost:5432/registration';
+const connectionString = process.env.DATABASE_URL || 'postgresql://sneakygoblin:codex123@localhost:5432/registration';
 const pool = new Pool({
     connectionString
 });

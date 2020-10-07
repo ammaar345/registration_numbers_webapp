@@ -50,14 +50,14 @@ module.exports = function RegNumber(pool) {
     //     }
     //     return filteredList;
     // }
-    async function databaseFilter(areaCode) {
-        const SELECT_QUERY = 'Select town from towns where name=$1'
-        const townInitial = await pool.query(SELECT_QUERY, [areaCode])
-        if (townInitial.rows.length > 0) {
-            return townInitial.rows[0].town;
-        }
-        return 0;
-    }
+    // async function databaseFilter(areaCode) {
+    //     const SELECT_QUERY = 'Select town from towns where name=$1'
+    //     const townInitial = await pool.query(SELECT_QUERY, [areaCode])
+    //     if (townInitial.rows.length > 0) {
+    //         return townInitial.rows[0].town;
+    //     }
+    //     return 0;
+    // }
 
     async function addToDb(registration) {
         const regCode = await registration.substring(0, 2);
@@ -69,7 +69,7 @@ module.exports = function RegNumber(pool) {
         if (regID > 0) {
             SELECT_QUERY_2 = await pool.query('SELECT * from regNumbers where reg=$1', [registration])
         }
-        else if (SELECT_QUERY_2.rows.length < 1) {
+ if (SELECT_QUERY_2.rows.length < 1) {
             var INSERT_QUERY = 'insert into regNumbers (reg,regNumId) values ($1,$2)'
             await pool.query(INSERT_QUERY, [registration, regID]);
 
@@ -77,21 +77,12 @@ module.exports = function RegNumber(pool) {
     }
     async function showAll() {
         const SELECT_QUERY = 'select reg from regNumbers '
-        const regs = await pool.query(SELECT_QUERY)
-        return regs.rows;
+        const reg = await pool.query(SELECT_QUERY)
+        return reg.rows;
     }
     async function filterByTown(town) {
     const SELECT_QUERY=await pool.query('Select reg from regNumbers where town=')
-        if (town = "CA") {
-
-
-        }
-        if (town = "CJ") {
-
-        }
-        if (town =) {
-
-        }
+     
     }
     // async function filter(location) {
     //     // CL, CY or contains(obtained from dropdown menu)
