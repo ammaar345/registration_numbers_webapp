@@ -41,7 +41,8 @@ select{background-color: dodgerblue;
 .blue {
 	background-color: dodgerblue;
 }
-
+ul{display: inline-block;}
+li{display: inline-block;}
 .message {
 	height: 1em;
 	font-weight: bold;
@@ -49,18 +50,21 @@ select{background-color: dodgerblue;
 }
 input[type="submit"]:hover{background-color: bisque;}
 .regNumber {
+	
+     
+		background-color: yellow;
+		width: 7.5em;
+		font-weight: 900;
+		margin:1em;
+		border-radius: 0.3em;
+	  padding: 4px;  
+		border:1px solid black ;
+		text-align:  center ;
+		display: inline-block;
+	  }
 
-	background-color: yellow;
-	border: 0.1em solid;
-	border-radius: 0.25em;
-	padding: 1em;
-	margin: 0.5em;
-	width: 7em;
-	text-align: center;
-	font-weight: bold;
-	float: left;
-
-}
+	  li {list-style-type: none}
+	  ul{list-style-type:none;}
 
 input[type='radio'] {
 	margin: 1em;
