@@ -37,27 +37,29 @@ app.listen(PORT,function(){
 
 
 app.get ("/",async function(req,res){
-  res.render("index")
-  
-  
-})
+  // var regs=await regNumbers.showAll();
+  res.render("index"), {
 
-app.get("/reg_numbers",async function(req,res){
-var regNumber=req.params.registration;
+ }
+ })
 
-  res.render("registration",{
-    regNumber
-    })
+// app.get("/reg_numbers",async function(req,res){
+ 
+//   res.render("index",{
+ 
+//     })
   
-})
+// })
 
 app.post("/reg_numbers",async function(req,res){
- var reg=req.body.registration;
-  const addReg= await regNumbers.addRegNumber(reg);
+  var regNumber=req.body.registration;
+ await regNumbers.addToDb(regNumber)
+ const regs=await regNumbers.showAll();
+  // regNumbers.addToDb(reg)
   
   res.render("index",{
-
-
+   
+    registration:regs
   })
 
 })
