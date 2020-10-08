@@ -29,7 +29,11 @@
 					<option value="1">Cape Town</option>
 
 				</select>
-
+ {{#if messages.info}}
+            <div class="entry">
+                {{messages.info}}
+            </div>
+            {{/if}}
 				<ul> 
 					{{#each reg}}
 		<li class="regNumber">{{this.reg}}</li>

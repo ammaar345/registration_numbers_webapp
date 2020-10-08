@@ -85,6 +85,11 @@ module.exports = function RegNumber(pool) {
     const SELECT_QUERY=await pool.query('Select reg from regNumbers where regnumid=$1',[town])
      
     }
+    function flshMsg(input) {
+        if (input === "") {
+            return "enter"
+        }
+    }
     // async function filter(location) {
     //     // CL, CY or contains(obtained from dropdown menu)
     //     var filteredList = [];
@@ -161,6 +166,7 @@ module.exports = function RegNumber(pool) {
         // checkText,
         // classAdd,
         // databaseFilter,
+        flshMsg,
         filterByTown,
         addToDb,
         showAll
