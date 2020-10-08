@@ -81,7 +81,7 @@ module.exports = function RegNumber(pool) {
         return reg.rows;
     }
     async function filterByTown(town) {
-    const SELECT_QUERY=await pool.query('Select reg from regNumbers where town=')
+    const SELECT_QUERY=await pool.query('Select reg from regNumbers where town=$1',[town])
      
     }
     // async function filter(location) {
@@ -160,6 +160,7 @@ module.exports = function RegNumber(pool) {
         // checkText,
         // classAdd,
         // databaseFilter,
+        filterByTown,
         addToDb,
         showAll
     }

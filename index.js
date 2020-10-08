@@ -2,7 +2,7 @@ const express = require("express");
 const exphbs = require('express-handlebars');
 const bodyParser = require("body-parser")
 const app = express();
-//const flash = require('express-flash');
+const flash = require('express-flash');
 const session = require('express-session');
 const pg = require("pg");
 
@@ -20,7 +20,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true
   }));
-  // app.use(flash());
+  app.use(flash());
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 app.engine('handlebars', exphbs({
@@ -40,7 +40,10 @@ app.get ("/",async function(req,res){
  })
  app.post("/reg_numbers",async function(req,res){
    var regNumber=req.body.registration;
-   const showReg=await regNumbers.showAll()
+  //  const showReg=await regNumbers.showAll()
+   if (regNumber === "") {
+    req.flash('info', 'Please enter a registration number.');
+}
   const addReg=await regNumbers.addToDb(regNumber)
  
    // regNumbers.addToDb(reg)
