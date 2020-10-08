@@ -84,8 +84,9 @@ module.exports = function RegNumber(pool) {
         return reg.rows;
     }
     async function filterByTown(town) {
-    const SELECT_QUERY=await pool.query('Select reg from regNumbers where regnumid=$1',[town])
-     
+    const SELECT_QUERY=('Select reg from regNumbers where regnumid=$1')
+  var town=  await pool.query(SELECT_QUERY,[town])
+    return town.rows
     }
     // function flshMsg(input) {
     //     if (input === "") {

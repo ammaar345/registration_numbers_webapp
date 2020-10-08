@@ -40,21 +40,27 @@ app.get ("/",async function(req,res){
  })
  app.post("/reg_numbers",async function(req,res){
    var regNumber=req.body.registration;
+   var town = req.body.town;
+
    const addReg=await regNumbers.addToDb(regNumber)
-   const showReg=await regNumbers.showAll()
-  //  let flash=await regNumbers.flshMsg(regNumber)
-   if (regNumber==="") {
-    req.flash('info', 'Please enter a registration number.');
-}
+
  
-  
+   //const showReg=await regNumbers.showAll()
+   const filter=await regNumbers.filterByTown(town);
+   console.log(filter)
+//    if (addReg) {
+//     req.flash('info', 'Please enter a registration number.');
+// }
+  //  let flash=await regNumbers.flshMsg(regNumber)
+ 
+  // console.log(town)
    
   
   
    // regNumbers.addToDb(reg)
    
    res.render("index",{
-   reg:showReg
+   reg:filter
    
    })
  
