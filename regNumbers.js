@@ -65,6 +65,7 @@ module.exports = function RegNumber(pool) {
         const SELECT_QUERY = 'Select id from towns where town=$1'
         const reg = await pool.query(SELECT_QUERY, [regCode])
         var regID = reg.rows[0].id;
+        //console.log(regID)
         let SELECT_QUERY_2;
         if (regID > 0) {
             SELECT_QUERY_2 = await pool.query('SELECT * from regNumbers where reg=$1', [registration])
@@ -81,7 +82,7 @@ module.exports = function RegNumber(pool) {
         return reg.rows;
     }
     async function filterByTown(town) {
-    const SELECT_QUERY=await pool.query('Select reg from regNumbers where town=$1',[town])
+    const SELECT_QUERY=await pool.query('Select reg from regNumbers where regnumid=$1',[town])
      
     }
     // async function filter(location) {
