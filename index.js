@@ -41,17 +41,24 @@ app.get ("/",async function(req,res){
  app.post("/reg_numbers",async function(req,res){
    var regNumber=req.body.registration;
    var town = req.body.town;
+   if (regNumber=== "") 
+   {    req.flash('info', 'Please enter a registration number.');
+  }
+else if (regNumbers.checkValid(regNumber)===0){
+  
+  const addReg=await regNumbers.addToDb(regNumber)
 
-   const addReg=await regNumbers.addToDb(regNumber)
-
+}
+ else {
+req.flash('info','This registration number exists already.')
+ }  
  
    //const showReg=await regNumbers.showAll()
    const filter=await regNumbers.filterByTown(town);
-   console.log(filter)
-//    if (addReg) {
-//     req.flash('info', 'Please enter a registration number.');
-// }
-  //  let flash=await regNumbers.flshMsg(regNumber)
+   console.log(filter);
+  //  console.log(filter)
+  
+//    let flash=await regNumbers.flshMsg(regNumber)
  
   // console.log(town)
    

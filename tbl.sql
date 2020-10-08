@@ -1,4 +1,9 @@
-create table towns (id serial not null primary key , townName text,town text);
+create table towns (
+id serial not null primary key ,
+ townName text,
+ town text);
+
+
 create table regNumbers (
 id serial not null primary key,
 regNumId int,
