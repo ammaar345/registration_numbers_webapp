@@ -87,7 +87,7 @@ module.exports = function RegNumber(pool) {
     }
     function flshMsg(input) {
         if (input === "") {
-            return "enter"
+            return "enter a reg"
         }
     }
     // async function filter(location) {
