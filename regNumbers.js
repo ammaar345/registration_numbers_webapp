@@ -60,6 +60,7 @@ module.exports = function RegNumber(pool) {
     // }
 
     async function addToDb(registration) {
+       if (registration!==""){
         const regCode = await registration.substring(0, 2);
         // console.log(regCode)
         const SELECT_QUERY = 'Select id from towns where town=$1'
@@ -76,6 +77,7 @@ module.exports = function RegNumber(pool) {
 
         }
     }
+    }
     async function showAll() {
         const SELECT_QUERY = 'select reg from regNumbers '
         const reg = await pool.query(SELECT_QUERY)
@@ -85,11 +87,11 @@ module.exports = function RegNumber(pool) {
     const SELECT_QUERY=await pool.query('Select reg from regNumbers where regnumid=$1',[town])
      
     }
-    function flshMsg(input) {
-        if (input === "") {
-            return "enter a reg"
-        }
-    }
+    // function flshMsg(input) {
+    //     if (input === "") {
+    //         return "enter a reg"
+    //     }
+    // }
     // async function filter(location) {
     //     // CL, CY or contains(obtained from dropdown menu)
     //     var filteredList = [];
@@ -166,7 +168,7 @@ module.exports = function RegNumber(pool) {
         // checkText,
         // classAdd,
         // databaseFilter,
-        flshMsg,
+        // flshMsg,
         filterByTown,
         addToDb,
         showAll

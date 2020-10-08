@@ -7,7 +7,7 @@ const session = require('express-session');
 const pg = require("pg");
 
 const Pool = pg.Pool;
-const connectionString = process.env.DATABASE_URL || 'postgresql://sneakygoblin:codex123@localhost:5432/registration';
+const connectionString = process.env.DATABASE_URL || 'postgresql://codex:codex123@localhost:5432/registration';
 const pool = new Pool({
     connectionString
 });
@@ -40,12 +40,14 @@ app.get ("/",async function(req,res){
  })
  app.post("/reg_numbers",async function(req,res){
    var regNumber=req.body.registration;
-   let flash=await regNumbers.flshMsg(regNumber)
-   if (flash) {
-    req.flash('info', 'Please enter a registration number.');
-}
    const addReg=await regNumbers.addToDb(regNumber)
    const showReg=await regNumbers.showAll()
+  //  let flash=await regNumbers.flshMsg(regNumber)
+   if (regNumber==="") {
+    req.flash('info', 'Please enter a registration number.');
+}
+ 
+  
    
   
   
@@ -66,7 +68,7 @@ app.get ("/",async function(req,res){
   
 // })
 
-const PORT=process.env.PORT||3001;
+const PORT=process.env.PORT||3020;
 app.listen(PORT,function(){
   console.log("App started at port :",PORT);
 })
