@@ -10,16 +10,9 @@ module.exports = function RegNumber(pool) {
 
     //         }
     // }
-    // async function addToDb(regNum) {
-    //     const INSERT_QUERY = ' insert into regNumbers (reg) values ($1)';
-    //     await pool.query(INSERT_QUERY, [regNum]);
-    // }
+
     // exists in addRegNumber already
-    //function checkValid(regist) {
-    //     if (/C[YLJ] \d{3,5}$/.test(regist) || /C[YLJ] \d+-\d+$/.test(regist)) {
-    //         return true
-    //     }
-    // }
+
     // async function addRegNumber(regNumber) {
     //     if (regNumber !== "") {
     //         if (/C[YLJ] \d{3,5}$/.test(regNumber) || /C[YLJ] \d+-\d+$/.test(regNumber)) {
@@ -33,11 +26,6 @@ module.exports = function RegNumber(pool) {
 
     // }
 
-    // var regNumbers = initialState ? initialState : [];
-    // function plateStorage() {
-    //     return regNumbers;
-
-    // }
 
     // function testfilter(location, registration) {
     //     // CL, CY or contains
@@ -58,7 +46,15 @@ module.exports = function RegNumber(pool) {
     //     }
     //     return 0;
     // }
+    async function checkValidReg(regist) {
+        if (/C[YAJ] \d{3,5}$/.test(regist) || /C[YAJ] \d+-\d+$/.test(regist)) {
+            return true
 
+        }
+        // else {
+        //     return false
+        // }
+    }
     async function checkValid(regNumber) {
         const checkDuplicate = await pool.query("SELECT reg from regnumbers where reg=$1", [regNumber])
         return checkDuplicate.rowCount;
@@ -66,6 +62,7 @@ module.exports = function RegNumber(pool) {
 
     async function addToDb(registration) {
         if (registration !== "") {
+            // checkValidReg(registration)
             const regCode = await registration.substring(0, 2);
             // console.log(regCode)
             const SELECT_QUERY = 'Select id from towns where town=$1'
@@ -93,22 +90,18 @@ module.exports = function RegNumber(pool) {
         let townVal;
         if (town === "all") {
             SELECT_QUERY = 'SELECT reg FROM regnumbers';
-             townVal = await pool.query(SELECT_QUERY)
+            townVal = await pool.query(SELECT_QUERY)
             return townVal.rows
         }
         else {
             SELECT_QUERY = ('Select reg from regNumbers where regnumid=$1')
-             townVal = await pool.query(SELECT_QUERY, [town])
+            townVal = await pool.query(SELECT_QUERY, [town])
             return townVal.rows;
         }
 
-    
+
     }
-    // function flshMsg(input) {
-    //     if (input === "") {
-    //         return "enter a reg"
-    //     }
-    // }
+
     // async function filter(location) {
     //     // CL, CY or contains(obtained from dropdown menu)
     //     var filteredList = [];
@@ -186,6 +179,7 @@ module.exports = function RegNumber(pool) {
         // classAdd,
         // databaseFilter,
         // flshMsg,
+        checkValidReg,
         filterByTown,
         addToDb,
         showAll,

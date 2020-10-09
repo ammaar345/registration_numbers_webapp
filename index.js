@@ -9,18 +9,18 @@ const pg = require("pg");
 const Pool = pg.Pool;
 const connectionString = process.env.DATABASE_URL || 'postgresql://codex:codex123@localhost:5432/registration';
 const pool = new Pool({
-    connectionString
+  connectionString
 });
 
 const RegNumbers = require("./regNumbers");
 const regNumbers = RegNumbers(pool);
 
 app.use(session({
-    secret: "<add a secret string here>",
-    resave: false,
-    saveUninitialized: true
-  }));
-  app.use(flash());
+  secret: "<add a secret string here>",
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(flash());
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 app.engine('handlebars', exphbs({
@@ -31,58 +31,90 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-app.get ("/",async function(req,res){
+app.get("/", async function (req, res) {
   // var regs=await regNumbers.showAll();
-  const reg=await regNumbers.showAll();
-  res.render("index",{
-     reg : reg
-    }) 
- })
- app.post("/reg_numbers",async function(req,res){
-   var regNumber=req.body.registration;
-   var town = req.body.town;
-   if (regNumber=== "") 
-   {    req.flash('info', 'Please enter a registration number.');
+  const reg = await regNumbers.showAll();
+  res.render("index", {
+    reg: reg
+  })
+})
+app.post("/reg_numbers", async function (req, res) {
+  var regNumber = req.body.registration;
+  var town = req.body.town;
+  if (regNumber === "") {
+    req.flash("info", "Please enter a registration number.")
   }
-else if (regNumbers.checkValid(regNumber)===0){
-  
-  const addReg=await regNumbers.addToDb(regNumber)
+  else
+    if (regNumber !== "") {//1
+      // if (regNumbers.checkValid(regNumber) === 0){
+       //2
+         if (regNumbers.checkValidReg(regNumber))   {//3
+          if(regNumbers.checkValid(regNumber)===0){
+          const addReg = await regNumbers.addToDb(regNumber)
+          req.flash('info', 'Registration successfully added.')}
+        }//3
+      // }
 
-}
- else {
-req.flash('info','This registration number exists already.')
- }  
- 
-   //const showReg=await regNumbers.showAll()
-   const filter=await regNumbers.filterByTown(town);
-   console.log(filter);
+      //  }//2
+      else 
+      // if (regNumbers.checkValid(regNumber) > 0) 
+      {
+        req.flash('info', 'Registration already exists.')
+      }
+    }//1
+
+  //   {
+
+  //   }
+  // else {
+  //       req.flash('info', 'Please enter a registration number.');
+  //     }
+  //   }
+  //   else {
+  //    ) {
+
+  //       
+  //       req.flash('info', 'Your registration has been added.')
+
+  //     }
+  //     else {
+
+  //       req.flash('info', 'Invalid Registration.')
+  //       return false
+  //     }
+
+
+  //   }
+  //const showReg=await regNumbers.showAll()
+  const filter = await regNumbers.filterByTown(town);
+  console.log(filter);
   //  console.log(filter)
-  
-//    let flash=await regNumbers.flshMsg(regNumber)
- 
+
+  //    let flash=await regNumbers.flshMsg(regNumber)
+
   // console.log(town)
-   
-  
-  
-   // regNumbers.addToDb(reg)
-   
-   res.render("index",{
-   reg:filter
-   
-   })
- 
- })
+
+
+
+  // regNumbers.addToDb(reg)
+
+  res.render("index", {
+    reg: filter
+
+  })
+
+})
 
 // app.get("/reg_numbers",async function(req,res){
- 
+
 //   res.render("index",{
- 
+
 //     })
-  
+
 // })
 
-const PORT=process.env.PORT||3020;
-app.listen(PORT,function(){
-  console.log("App started at port :",PORT);
+const PORT = process.env.PORT || 6712;
+app.listen(PORT, function () {
+  console.log("App started at port :", PORT);
 })
 
