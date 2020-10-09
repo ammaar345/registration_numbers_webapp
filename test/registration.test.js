@@ -110,11 +110,8 @@ describe('Should test the filter by town function.', async function () {
 
         ])
     })
+
+    
 })
-//  describe('Testing the filter by town function',async function () {
-// let regNum=RegNum(pool);
-// await regNum.addToDb('CJ 9006')
-// console.log(await regNum.showAll())
-// assert.deepEqual(await regNum.showAll(),"")
 
 

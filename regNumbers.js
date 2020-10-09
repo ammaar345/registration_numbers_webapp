@@ -46,14 +46,8 @@ module.exports = function RegNumber(pool) {
     //     }
     //     return 0;
     // }
-    async function checkValidReg(regist) {
-        if (/C[YAJ] \d{3,5}$/.test(regist) || /C[YAJ] \d+-\d+$/.test(regist)) {
-            return true
-
-        }
-        // else {
-        //     return false
-        // }
+     function checkValidReg(regist) {
+        return (/C[YAJ] \d{3,5}$/.test(regist) || /C[YAJ] \d+-\d+$/.test(regist))
     }
     async function checkValid(regNumber) {
         const checkDuplicate = await pool.query("SELECT reg from regnumbers where reg=$1", [regNumber])
