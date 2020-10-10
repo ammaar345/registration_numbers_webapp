@@ -12,47 +12,39 @@
 
 		<h1>Registration numbers</h1>
 		<form action="/reg_numbers" method="POST">
-			<div class="message">
-
-			</div>
-
-
+	  <u> <h2>Example : CJ 2351 , CY 231-212 or CL 21490</h2></u>
 			<input type="text" class="regNumberEntered" placeholder="enter a registration number" name="registration">
-			<input type="submit" class="addRegNumber btn blue" value="Add reg number">
+			<input type="submit" class="addRegNumber btn blue" value="Add registration">
 
 			<div class="filter">
 				<strong>Filter by town</strong>
 				<select id="townSelect" name="town">
-					<option value="all" >Show All</option>
-					<option value="3" >Bellville</option>
-					<option value="2" >Paarl</option>
-					<option value="1" >Cape Town</option>
+					<option value="all">Show All</option>
+					<option value="3">Bellville</option>
+					<option value="2">Paarl</option>
+					<option value="1">Cape Town</option>
 				</select>
- {{!-- {{#if messages.info}} --}}
- <input type="submit" value="Filter" class="blue">
-            <div class="entry">
-               <p class="invalid">{{messages.invalid}}</p> 
-			   <p class="duplicate">{{messages.dup}}</p> 
-			   {{!-- <p class="invalid.">{{messages.info}}</p>  --}}
-			   <p class="success">{{messages.success}}</p> 
-            </div>
-            {{!-- {{/if}} --}}
-				<ul> 
+
+				<input type="submit" value="Filter" class="blue">
+				<div class="entry">
+					<p class="invalid">{{messages.invalid}}</p>
+					<p class="duplicate">{{messages.dup}}</p>
+					<p class="success">{{messages.success}}</p>
+				</div>
+
+				<ul>
 					{{#each reg}}
-		<li class="regNumber">{{this.reg}}</li>
-		{{/each}}
-		</ul>
-		
+					<li class="regNumber">{{this.reg}}</li>
+					{{/each}}
+				</ul>
+
 		</form>
 	</div>
-	    <script>
-        setTimeout(function(){
-            document.querySelector(".entry").innerHTML = "";
-        }, 5000);
-    </script>	
-	{{!-- <!-- <i>Reg numbers to be added here...</i> -->
-<a href="/reg_numbers/{{this.regNumber}}">{{this.regNumber}}</a> --}}
-	{{!-- {{reg}} --}}
+	<script>
+		setTimeout(function () {
+			document.querySelector(".entry").innerHTML = "";
+		}, 5000);
+	</script>
 </body>
 
 </html>
