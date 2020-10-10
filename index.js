@@ -33,7 +33,6 @@ app.use(bodyParser.json())
 app.get('/', (req, res) => res.redirect('/reg_numbers'))
 
 app.get("/reg_numbers", async function (req, res) {
-  // var regs=await regNumbers.showAll();
   const reg = await regNumbers.showAll();
   res.render("index", {
     reg: reg
@@ -42,56 +41,6 @@ app.get("/reg_numbers", async function (req, res) {
 app.post("/reg_numbers", async function (req, res) {
   var regNumber = req.body.registration;
   var town = req.body.town;
-  //   if (regNumber === "") {
-  //     req.flash("info", "Please enter a registration number.")
-  //   }
-  //   else
-  //     if (regNumber !== "") {//1
-  //       // if (regNumbers.checkValid(regNumber) === 0){
-  //        //2
-  //          if (regNumbers.checkValidReg(regNumber)===true)   {//3
-  //           if(regNumbers.checkValid(regNumber)===0){
-  //           const addReg = await regNumbers.addToDb(regNumber)
-  //           req.flash('info', 'Registration successfully added.')
-  //          if(regNumbers.checkValidReg(regNumber)===false){
-  // req.flash('info','Invalid registration number.'
-  // )
-  //         }
-  //         }
-  //         }//3
-  //       // }
-
-  //       //  }//2
-  //       else 
-  //       if (regNumbers.checkValid(regNumber) > 0) 
-  //       {
-  //         req.flash('info', 'Registration already exists.')
-  //       }
-  //     }//1
-
-  //   {
-
-  //   }
-  // else {
-  //       req.flash('info', 'Please enter a registration number.');
-  //     }
-  //   }
-  //   else {
-  //    ) {
-
-  //       
-  //       req.flash('info', 'Your registration has been added.')
-
-  //     }
-  //     else {
-
-  //       req.flash('info', 'Invalid Registration.')
-  //       return false
-  //     }
-
-
-  //   }
-  //const showReg=await regNumbers.showAll()
   const valid = await regNumbers.checkValid(regNumber);
   const chkFormat = await regNumbers.checkValidReg(regNumber)
   if (regNumber === "") {
@@ -110,42 +59,17 @@ app.post("/reg_numbers", async function (req, res) {
       req.flash('invalid', 'Invalid registration number.')
 
     }
-    
   }
   else if (valid !== 0) {
-      console.log("bread")
-      req.flash('dup', 'Registration already exists.')
-    }
-  // else {
-  //   req.flash('info', 'This registration number exists already.')
-  // }
+    req.flash('dup', 'This Registration number already exists.')
+  }
   const filter = await regNumbers.filterByTown(town);
-  console.log({ filter });
-  //  console.log(filter)
-
-  //    let flash=await regNumbers.flshMsg(regNumber)
-
-  // console.log(town)
-
-
-
-  // regNumbers.addToDb(reg)
-
   res.render("index", {
     reg: filter
 
   })
 
 })
-
-// app.get("/reg_numbers",async function(req,res){
-
-//   res.render("index",{
-
-//     })
-
-// })
-
 const PORT = process.env.PORT || 8713;
 app.listen(PORT, function () {
   console.log("App started at port :", PORT);
