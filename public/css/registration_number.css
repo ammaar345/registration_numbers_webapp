@@ -5,7 +5,9 @@ body {
 	font-size: 1em;
 }
 
-
+.invalid{color: red;}
+.duplicate{color: orange;}
+.success{color: green;}
 .container {
 	width: 90%;
 	margin:	auto;

@@ -7,7 +7,7 @@ const session = require('express-session');
 const pg = require("pg");
 
 const Pool = pg.Pool;
-const connectionString = process.env.DATABASE_URL || 'postgresql://codex:codex123@localhost:5432/registration';
+const connectionString = process.env.DATABASE_URL || 'postgresql://sneakygoblin:codex123@localhost:5432/registration';
 const pool = new Pool({
   connectionString
 });
@@ -92,26 +92,35 @@ app.post("/reg_numbers", async function (req, res) {
 
   //   }
   //const showReg=await regNumbers.showAll()
-
+  const valid = await regNumbers.checkValid(regNumber);
+  const chkFormat = await regNumbers.checkValidReg(regNumber)
   if (regNumber === "") {
-    req.flash('info', 'Please enter a registration number.');
+    req.flash('invalid', 'Please enter a registration number.');
   }
-  else if (await regNumbers.checkValid(regNumber) === 0) {
+  else if (valid === 0) {
     console.log('else if ');
-    if (regNumbers.checkValidReg(regNumber)) {
+    if (chkFormat) {
       console.log('else if  IF');
       const addReg = await regNumbers.addToDb(regNumber)
       console.log({ addReg });
-      req.flash('info', 'Registration successfully added.')
-    } else {req.flash('info','Invalid registration number.')
+      req.flash('success', 'Registration successfully added.')
+    }
+
+    else {
+      req.flash('invalid', 'Invalid registration number.')
 
     }
+    
   }
+  else if (valid !== 0) {
+      console.log("bread")
+      req.flash('dup', 'Registration already exists.')
+    }
   // else {
   //   req.flash('info', 'This registration number exists already.')
   // }
   const filter = await regNumbers.filterByTown(town);
-  console.log({filter});
+  console.log({ filter });
   //  console.log(filter)
 
   //    let flash=await regNumbers.flshMsg(regNumber)

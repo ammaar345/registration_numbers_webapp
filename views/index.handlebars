@@ -28,11 +28,15 @@
 					<option value="2" >Paarl</option>
 					<option value="1" >Cape Town</option>
 				</select>
- {{#if messages.info}}
+ {{!-- {{#if messages.info}} --}}
+ <input type="submit" value="Filter" class="blue">
             <div class="entry">
-                {{messages.info}}
+               <p class="invalid">{{messages.invalid}}</p> 
+			   <p class="duplicate">{{messages.dup}}</p> 
+			   {{!-- <p class="invalid.">{{messages.info}}</p>  --}}
+			   <p class="success">{{messages.success}}</p> 
             </div>
-            {{/if}}
+            {{!-- {{/if}} --}}
 				<ul> 
 					{{#each reg}}
 		<li class="regNumber">{{this.reg}}</li>
