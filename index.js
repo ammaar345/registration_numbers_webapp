@@ -47,11 +47,9 @@ app.post("/reg_numbers", async function (req, res) {
     req.flash('invalid', 'Please enter a registration number.');
   }
   else if (valid === 0) {
-    console.log('else if ');
     if (chkFormat) {
-      console.log('else if  IF');
+
       const addReg = await regNumbers.addToDb(regNumber)
-      console.log({ addReg });
       req.flash('success', 'Registration successfully added.')
     }
 
