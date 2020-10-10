@@ -2,12 +2,16 @@
 
 body {
 	font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-	font-size: 1em;
+	/* font-size: 1em; */
+	font-size: medium;
 }
 
-.invalid{color: red;}
-.duplicate{color: orangered;}
-.success{color: green;}
+.invalid{color: red;
+	font-size: large;}
+.duplicate{color: orangered;
+	font-size: large;}
+.success{color: green;
+font-size: large;}
 .container {
 	width: 90%;
 	margin:	auto;
