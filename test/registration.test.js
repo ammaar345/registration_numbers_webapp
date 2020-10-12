@@ -55,7 +55,7 @@ describe("Should test that the registrations are being inserted into the databas
 describe('Should test the filter by town function.', async function () {
 
 
-    it("Should return  2 registrations in the database , since the value 1 is inserted , as matching the database foreign key.", async function () {
+    it("Should return 2 registrations in the database , since the value 1 is inserted , as matching the database foreign key.", async function () {
         let regNum = RegNum(pool)
         await regNum.addToDb("CY 8812");
         await regNum.addToDb("CJ 9031");
@@ -111,7 +111,37 @@ describe('Should test the filter by town function.', async function () {
         ])
     })
 
-    
+
 })
 
 
+
+
+describe('Should test if the number plate is valid.', async function () {
+
+
+    it("Should return false for the entered value.", async function () {
+        let regNum = RegNum()
+        var reg = 'C Y 932'
+        assert.equal(regNum.checkValidReg(reg), false)
+    })
+
+    it("Should return false , since the registration is invalid.", async function () {
+        let regNum = RegNum()
+        var reg = 'kjaf'
+        assert.equal(regNum.checkValidReg(reg), false)
+    })
+    it("Should return true , since the registration format is correct.", async function () {
+        let regNum = RegNum()
+        var reg = 'CJ 02-21'
+        assert.equal(regNum.checkValidReg(reg), true)
+    })
+
+    it("Should return true , since the registration format is correct.", async function () {
+        let regNum = RegNum()
+        var reg = 'CY 9021'
+        assert.equal(regNum.checkValidReg(reg), true)
+    })
+
+
+})
