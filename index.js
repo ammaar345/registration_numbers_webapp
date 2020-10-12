@@ -33,7 +33,7 @@ app.use(express.static("public"))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.get('/', regRoute.show);
- app.post('/reg_numbers',regRoute.errorMsg)
+//working method ..  app.post('/reg_numbers',regRoute.errorMsg)
 
 //  app.post('/reg_numbers',regRoute.filter)
 const PORT = process.env.PORT || 8713;
