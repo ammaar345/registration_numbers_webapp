@@ -6,6 +6,7 @@ module.exports = function route(regNumbers) {
     })
   }
   async function errorMsg(req, res, next) {
+  
     var regNumber = req.body.registration;
     var town = req.body.town;
     const valid = await regNumbers.checkValid(regNumber);
@@ -34,9 +35,21 @@ module.exports = function route(regNumbers) {
 
     })
 
-  }
+ 
+  // async function filter(req,res,next){
+//   var town = req.body.town;
+//   const filter = await regNumbers.filterByTown(town);
+  
+ 
+//   res.render("index", {
+//     reg: filter
 
+//   })
+
+
+}
   return { show,
      errorMsg 
+   
     }
 }

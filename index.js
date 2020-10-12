@@ -33,7 +33,9 @@ app.use(express.static("public"))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.get('/', regRoute.show);
-app.post('/reg_numbers',regRoute.errorMsg)
+ app.post('/reg_numbers',regRoute.errorMsg)
+
+//  app.post('/reg_numbers',regRoute.filter)
 const PORT = process.env.PORT || 8713;
 app.listen(PORT, function () {
   console.log("App started at port :", PORT);

@@ -11,9 +11,12 @@
 	<div class="container">
 
 		<h1>Registration numbers</h1>
-		<form action="/reg_numbers" method="POST">
+		
 	  <u> <h2>Example : CJ 2351 , CY 231-212 or CL 21490</h2></u>
+{{!-- <form action="/reg_numbers" method="GET"> --}}
+		<form action="/reg_numbers" method="POST">
 			<input type="text" class="regNumberEntered" placeholder="enter a registration number" name="registration">
+
 			<input type="submit" class="addRegNumber btn blue" value="Add registration">
 
 			<div class="filter">
@@ -24,8 +27,11 @@
 					<option value="2">Paarl</option>
 					<option value="1">Cape Town</option>
 				</select>
-
+	{{!-- </form> --}}
+		{{!-- <form action="/reg_numbers" method="POST"> --}}
 				<input type="submit" value="Filter" class="blue">
+				
+				
 				<div class="entry">
 					<p class="invalid">{{messages.invalid}}</p>
 					<p class="duplicate">{{messages.dup}}</p>
@@ -37,8 +43,9 @@
 					<li class="regNumber">{{this.reg}}</li>
 					{{/each}}
 				</ul>
-
-		</form>
+				</form>
+{{!-- </form>
+	 --}}
 	</div>
 	<script>
 		setTimeout(function () {
