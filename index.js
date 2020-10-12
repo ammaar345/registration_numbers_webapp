@@ -14,6 +14,7 @@ const pool = new Pool({
 
 const RegNumbers = require("./regNumbers");
 const RegRoute = require('./routes/regRoutes');
+const regRoutes = require("./routes/regRoutes");
 
 const regNumbers = RegNumbers(pool);
 const regRoute = RegRoute(regNumbers)
@@ -33,8 +34,9 @@ app.use(express.static("public"))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.get('/', regRoute.show);
-//working method ..  app.post('/reg_numbers',regRoute.errorMsg)
-
+// working method .. 
+ app.post('/reg_numbers',regRoute.errorMsg)
+app.get('/reg_numbers',regRoute.filter)
 //  app.post('/reg_numbers',regRoute.filter)
 const PORT = process.env.PORT || 8713;
 app.listen(PORT, function () {

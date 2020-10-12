@@ -16,10 +16,17 @@
 {{!-- <form action="/reg_numbers" method="GET"> --}}
 		<form action="/reg_numbers" method="POST">
 			<input type="text" class="regNumberEntered" placeholder="enter a registration number" name="registration">
-
+	
+				<div class="entry">
+					<p class="invalid">{{messages.invalid}}</p>
+					<p class="duplicate">{{messages.dup}}</p>
+					<p class="success">{{messages.success}}</p>
+				</div>
 			<input type="submit" class="addRegNumber btn blue" value="Add registration">
+</form>
 
 			<div class="filter">
+			<form action="/reg_numbers" method="GET">
 				<strong>Filter by town</strong>
 				<select id="townSelect" name="town">
 					<option value="all">Show All</option>
@@ -31,12 +38,7 @@
 		{{!-- <form action="/reg_numbers" method="POST"> --}}
 				<input type="submit" value="Filter" class="blue">
 				
-				
-				<div class="entry">
-					<p class="invalid">{{messages.invalid}}</p>
-					<p class="duplicate">{{messages.dup}}</p>
-					<p class="success">{{messages.success}}</p>
-				</div>
+			
 
 				<ul>
 					{{#each reg}}
@@ -44,6 +46,7 @@
 					{{/each}}
 				</ul>
 				</form>
+				
 {{!-- </form>
 	 --}}
 	</div>
