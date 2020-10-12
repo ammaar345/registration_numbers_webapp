@@ -47,7 +47,6 @@ module.exports = function RegNumber(pool) {
             return townVal.rows;
         }
 
-
     }
 
 

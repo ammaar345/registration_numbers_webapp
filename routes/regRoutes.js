@@ -1,27 +1,12 @@
 module.exports = function route(regNumbers) {
-  // async function show(req, res, next) {
-  // 	try {
-  // res.redirect("/reg_numbers");
-  // 		}
-
-  // 	catch (err) {
-  // 		next(err);
-  // 	}
-  // };
   async function show(req, res, next) {
     const reg = await regNumbers.showAll();
     res.render("index", {
       reg: reg
     })
-  }   // app.get("/reg_numbers", async function (req, res) {
-  //   const reg = await regNumbers.showAll();
-  //   res.render("index", {
-  //     reg: reg
-  //   })
-  // })
-  
-   async function errorMsg (req, res ,next) {
-  var regNumber = req.body.registration;
+  }
+  async function errorMsg(req, res, next) {
+    var regNumber = req.body.registration;
     var town = req.body.town;
     const valid = await regNumbers.checkValid(regNumber);
     const chkFormat = await regNumbers.checkValidReg(regNumber)
@@ -50,7 +35,8 @@ module.exports = function route(regNumbers) {
     })
 
   }
-   
-  
-  return { show ,errorMsg}
+
+  return { show,
+     errorMsg 
+    }
 }
