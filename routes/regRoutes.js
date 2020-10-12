@@ -29,6 +29,10 @@ module.exports = function route(regNumbers) {
     else if (valid !== 0) {
       req.flash('dup', 'This Registration number already exists.')
     }
+    const reg = await regNumbers.showAll();
+    res.render("index", {
+     reg: reg
+  });
     // const filter = await regNumbers.filterByTown(town);
     //   res.render("index", {
     //     reg: filter
