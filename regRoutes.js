@@ -7,7 +7,7 @@ module.exports = function route(regNumbers) {
   }
   async function errorMsg(req, res, next) {
 
-    var regNumber = req.body.registration;
+    var regNumber = (req.body.registration).toUpperCase();
 
     const valid = await regNumbers.checkValid(regNumber);
     const chkFormat = await regNumbers.checkValidReg(regNumber)

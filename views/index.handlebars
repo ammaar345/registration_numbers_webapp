@@ -15,13 +15,14 @@
 	  <u> <h2>Example : CJ 2351 , CY 231-212 or CL 21490</h2></u>
 {{!-- <form action="/reg_numbers" method="GET"> --}}
 		<form action="/reg_numbers" method="POST">
-			<input type="text" class="regNumberEntered" placeholder="enter a registration number" name="registration">
-	
 				<div class="entry">
 					<p class="invalid">{{messages.invalid}}</p>
 					<p class="duplicate">{{messages.dup}}</p>
 					<p class="success">{{messages.success}}</p>
 				</div>
+			<input type="text" class="regNumberEntered" placeholder="enter a registration number" name="registration">
+	
+			
 			<input type="submit" class="addRegNumber btn blue" value="Add registration">
 </form>
 
