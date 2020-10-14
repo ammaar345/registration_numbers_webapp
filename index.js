@@ -14,7 +14,6 @@ const pool = new Pool({
 
 const RegNumbers = require("./regNumbers");
 const RegRoute = require('./regRoutes');
-const regRoutes = require("./regRoutes");
 
 const regNumbers = RegNumbers(pool);
 const regRoute = RegRoute(regNumbers)
